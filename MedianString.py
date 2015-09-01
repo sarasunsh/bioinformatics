@@ -9,6 +9,8 @@ Created on Fri Aug 21 14:01:19 2015
 from HammingDistance import hamming_distance
 from CondensedList import condensed_list
 
+raise Exception("meow")
+
 # finds a k-mer that has the lowest "score" (closest to consensus sequence) among a collection of strings
 def median_string(strings, k):
     
