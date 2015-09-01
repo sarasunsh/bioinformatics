@@ -11,11 +11,11 @@ from collections import Counter
 
 def greedy(strings, k, t):
     """
-    Function greedy: meow meow, the bees knees
+    Function greedy: brute force approach to identifying recurring binding motif in set of sequences
     
-    @param strings: meow IT"S A STRING that does this
-    @param k: int, meow 
-    @param t: int, meow
+    @param strings: list of strings of equal length
+    @param k: int, length of putative binding motif 
+    @param t: int, number of strings in list 'strings'
     @return
     """
     # strings is a list, k and t are integers
