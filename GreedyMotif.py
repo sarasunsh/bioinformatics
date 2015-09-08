@@ -8,6 +8,7 @@ import numpy as np
 import random
 from collections import Counter
 
+# changing greedy_motif so that it startsat probability of 1
 
 def greedy(strings, k, t):
     """
