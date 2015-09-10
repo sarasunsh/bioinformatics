@@ -26,9 +26,9 @@ def overlap_graph(strings):
 #    Output: The overlap graph Overlap(Patterns).
     overlap = {}
     
-     for each string, select the prefix and check if it matches the suffix of other strings
-     if so, the strings with matching suffixes are adjacent
-     this code checks each string against itself -- room for improvement?
+#     for each string, select the prefix and check if it matches the suffix of other strings
+#     if so, the strings with matching suffixes are adjacent
+#     this code checks each string against itself -- room for improvement?
     for string in strings:
         prefix = string[1:]
         adj = [string2 for string2 in strings if string2[:-1] == prefix]               
