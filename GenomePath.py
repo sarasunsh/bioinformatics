@@ -28,11 +28,11 @@ def overlap_graph(strings):
     
 #     for each string, select the prefix and check if it matches the suffix of other strings
 #     if so, the strings with matching suffixes are adjacent
-#     this code checks each string against itself -- room for improvement?
+#     SOLVED: this code checks each string against itself -- this is a bug because a string could potentially return itself if it were uniform composition
     for string in strings:
         prefix = string[1:]
-        adj = [string2 for string2 in strings if string2[:-1] == prefix]               
-        if adj > 0:
+        adj = [string2 for string2 in strings if string2[:-1] == prefix if string2 != string]               
+        if len(adj) > 0:
             overlap[string] = adj
         
     return overlap

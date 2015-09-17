@@ -2,31 +2,46 @@
 """
 Created on Wed Sep 09 22:12:20 2015
 
-@author: User
+@author: SSunshine
+@ quick and dirty script
 """
 
-import string
+#import string
+#apostrophe = string.punctuation[6]
+#comma = string.punctuation[11]
+#colon = string.punctuation[15]
+#string_break = apostrophe+comma+apostrophe
 
-def formatter(file_name):
+#cd C:\Users\User\Downloads
+cd C:\Users\ssunshine\Downloads
 
-    apostrophe = string.punctuation[6]
-    comma = string.punctuation[11]
-    colon = string.punctuation[15]
-    string_break = apostrophe+comma+apostrophe
-  
-    cd C:\Users\User\Downloads
-    dataset_file = open("dataset_198_3 (2).txt")
-    strings = dataset_file.read()
-#    strings = strings.strip('\n')
-    
-    b = strings.split("\n")
-    
-#    a = repr(strings).replace("\n", string_break)    
+with open("dataset_198_9 (3).txt") as f:
+    lines = f.readlines()
 
-    cd C:\Users\User\Downloads  
-    text_file = open("answer.txt", "w")
-    text_file.write(str(b))
-    text_file.close()
+content = [x.strip('\n') for x in lines]
+
+answer = overlap_graph(content)
+
+text_file = open("answer.txt", "w")
+text_file.write(str(answer.items()))
+text_file.close()
+
+
+
+
+#
+#dataset_file = open("dataset_198_3 (2).txt")
+#strings = dataset_file.read()
+##    strings = strings.strip('\n')
+#    
+#b = strings.split("\n")
+#    
+##    a = repr(strings).replace("\n", string_break)    
+#
+#    cd C:\Users\User\Downloads  
+#    text_file = open("answer.txt", "w")
+#    text_file.write(str(b))
+#    text_file.close()
  
 #hood= neighbors('TATTTGTCGTA',3)
 #a = repr(hood).replace(",", "")
