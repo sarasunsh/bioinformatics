@@ -33,10 +33,28 @@ def overlap_graph(strings):
         prefix = string[1:]
         adj = [string2 for string2 in strings if string2[:-1] == prefix if string2 != string]               
         if len(adj) > 0:
-            overlap[string] = adj
-        
-    return overlap
+            overlap[string] = set(adj)
     
+    return overlap
+
+from Composition import composition
+    
+def debruijn(k, text):   
+    # nodes    
+    nodes = []
+    k = k-1
+
+    for i, bp in enumerate(text):
+        end_index = i+k - 1
+
+        # if you haven't gone too far down the pattern (possibility of finding k_mer still exists)        
+        if end_index < len(text):
+            node = text[i:i+k]
+            nodes.append(node)
+    
+
+    
+    strings = composition(k, text)
 
 
                 
