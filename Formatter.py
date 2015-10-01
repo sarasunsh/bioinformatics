@@ -15,12 +15,12 @@ Created on Wed Sep 09 22:12:20 2015
 #cd C:\Users\User\Downloads
 cd C:\Users\ssunshine\Downloads
 
-with open("dataset_198_9 (3).txt") as f:
+with open("dataset_200_7.txt") as f:
     lines = f.readlines()
 
 content = [x.strip('\n') for x in lines]
 
-answer = overlap_graph(content)
+answer = debruijn2(content)
 
 text_file = open("answer.txt", "w")
 text_file.write(str(answer.items()))

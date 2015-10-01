@@ -30,8 +30,8 @@ def overlap_graph(strings):
 #     if so, the strings with matching suffixes are adjacent
 #     SOLVED: this code checks each string against itself -- this is a bug because a string could potentially return itself if it were uniform composition
     for string in strings:
-        prefix = string[1:]
-        adj = [string2 for string2 in strings if string2[:-1] == prefix if string2 != string]               
+        suffix = string[1:]
+        adj = [string2 for string2 in strings if string2[:-1] == suffix if string2 != string]               
         if len(adj) > 0:
             overlap[string] = set(adj)
     
@@ -40,7 +40,7 @@ def overlap_graph(strings):
 from Composition import composition
     
 def debruijn(k, text):   
-    # nodes    
+    # nodes are composed of (k-1)_mers while edges are k_mers
     nodes = []
     k = k-1
 
@@ -48,13 +48,46 @@ def debruijn(k, text):
         end_index = i+k - 1
 
         # if you haven't gone too far down the pattern (possibility of finding k_mer still exists)        
-        if end_index < len(text):
+        if end_index < len(text)-1:
             node = text[i:i+k]
             nodes.append(node)
+        elif end_index == len(text)-1:
+            node = text[i:i+k]+'X'
+            nodes.append(node)
+
+    debruijn = {}
     
+#     for each string, select the prefix and check if it matches the suffix of other strings
+#     if so, the strings with matching suffixes are adjacent
+#     SOLVED: this code checks each string against itself -- this is a bug because a string could potentially return itself if it were uniform composition
+    for node in nodes:
+        suffix = node[1:]
+        adj = []
+        for node2 in nodes:
+            if 'X' in node2:
+                if node2[:-2] == suffix:
+                    adj.append(node2)
+            elif node2[:-1] == suffix and node2 != node:
+                adj.append(node2)
+        if len(adj) > 0:
+            debruijn[node] = set(adj)
 
+    return debruijn
     
-    strings = composition(k, text)
+def debruijn2(nodes):   
+
+    debruijn2 = {}
+#     for each string, select the prefix and check if it matches the suffix of other strings
+#     if so, the strings with matching suffixes are adjacent
+#     SOLVED: this code checks each string against itself -- this is a bug because a string could potentially return itself if it were uniform composition
+       
+    for node in nodes:
+        prefix = node[:-1]
+        suffix = node[1:]
+        if prefix in debruijn2:
+            debruijn2[prefix].append(suffix)
+        else:
+            debruijn2[prefix] = [suffix]
 
 
-                
+    return debruijn2
