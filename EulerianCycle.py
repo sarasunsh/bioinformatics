@@ -68,15 +68,6 @@ def eulerian(adj_dict):
             node = new_node
             cycle.append(node)
 
-        elif value == None:
-            # if the node has no unused edges, it must be back at the original point (since graph is balanced)
-            # so we want to expand the circle until it encompasses all nodes           
-            for i, n in enumerate(cycle):
-                if remain_d.get(n) > 0:
-                    node = n
-                    cycle = cycle[i:]+cycle[:i+1]
-                    break
-
 
     for i, n in enumerate(cycle):
         if n == end:

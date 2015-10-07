@@ -28,7 +28,10 @@ text_file.close()
 
 
 
+with open("answer.txt") as f:
+    lines = f.readlines()
 
+content = [x.strip('\n') for x in lines]
 #
 #dataset_file = open("dataset_198_3 (2).txt")
 #strings = dataset_file.read()
