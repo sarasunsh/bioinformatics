@@ -21,14 +21,19 @@ from collections import Counter
 from GenomePath import debruijn2
 
 def reconstruction(kmers):
-    # use debruijn approach to create adjacency dictionary past on k-mers    
+    
+    # Use De Bruijn approach to create adjacency dictionary from list of k-mers
     adj_dict = debruijn2(kmers)    
 
-    # dictionary that tracks remaining edges (those not yet taken)
+    # Create dictionary that tracks remaining edges (those not yet taken)
     remain_d = deepcopy(adj_dict)
 
-    # find the node with one less outgoing edge (start) and one less incoming edge (end)
-    find_ends = Counter()        
+    # Initializes Counter that will track which nodes are unbalanced, 
+    # which gives us the start and finish    
+    find_ends = Counter()
+
+    # Go through each node, using the counter find_ends to count how many nodes 
+    # are adjacent to the current node and subtract 1 for each of those adj       
     for row in remain_d.items():
         dir_out = row[0]
         dir_ins = row[1]        
@@ -36,14 +41,17 @@ def reconstruction(kmers):
         for ins in dir_ins:
             find_ends[ins] -= 1
             find_ends[dir_out] += 1
-
+            
+    # The most_common function return a list of elements and their counts 
+    # from the most common to the least.
+    # The starting node will be most common, as there is 1 less node 
+    # adjacent to it, while the ending node will have 1 less adjacency
     node = find_ends.most_common()[0][0]
-    end = find_ends.most_common()[-1][0]
            
-    # create the reconstructed string
+    # Begin to reconstruct the string
     reconstructed = node
     
-    # continue as long as there are edges remaining untaken    
+    # Continue as long as there are edges remaining untaken    
     while len(remain_d) > 0:
         node = remain_d.pop(node)[0]
         reconstructed = reconstructed+node[-1]
