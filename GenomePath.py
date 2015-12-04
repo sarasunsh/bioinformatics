@@ -37,8 +37,7 @@ def overlap_graph(strings):
     
     return overlap
 
-from Composition import composition
-    
+# Hamiltonian approach to creating a directed graph based on text composed of k-mers
 def debruijn(k, text):   
     # nodes are composed of (k-1)_mers while edges are k_mers
     nodes = []
@@ -73,7 +72,8 @@ def debruijn(k, text):
             debruijn[node] = set(adj)
 
     return debruijn
-    
+
+# Eulerian approach to creating a directed graph based on collection of k-mers    
 def debruijn2(nodes):   
 
     debruijn2 = {}
