@@ -38,9 +38,10 @@ def universal(k):
 
         # Check if any adjacencies remain for the node and if so, how many        
         value = remain_d.get(node)
-#        print "value is: ",
-#        print value
 #        print "node is: "+node
+#        print "value: ",
+#        print value
+#        print remain_d
         # If the node has no unused edges, we must be back at V0 (since the 
         # graph is balanced), but we also know there are remaining edges out 
         # there. We need to expand the circle until it encompasses all nodes.
@@ -52,7 +53,7 @@ def universal(k):
                 n = u_string[i:i+k-1]
                 if remain_d.get(n) > 0:
                     node = n
-                    u_string = u_string[i:]+u_string[:i+k-1]
+                    u_string = u_string[i:]+u_string[(k-1):i+(k-1)]
 #                    print "new node is: "+str(node)
 #                    print "u_string now is:"+u_string
                     break
