@@ -79,7 +79,6 @@ def debruijn2(nodes):
     debruijn2 = {}
 #     for each string, select the prefix and check if it matches the suffix of other strings
 #     if so, the strings with matching suffixes are adjacent
-#     SOLVED: this code checks each string against itself -- this is a bug because a string could potentially return itself if it were uniform composition
        
     for node in nodes:
         prefix = node[:-1]
