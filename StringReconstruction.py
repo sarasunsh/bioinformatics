@@ -15,7 +15,6 @@ Created on Tue Oct 06 19:02:46 2015
 #IMPORTANT: this program assumes that it is possible to create a path from the input and that each node has only one overlapping node
 
 # local package import
-import random
 from copy import deepcopy
 from collections import Counter
 from GenomePath import debruijn2
